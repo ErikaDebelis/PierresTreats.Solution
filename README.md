@@ -1,6 +1,6 @@
-# 
+# Pierre's Sweet and Savory Treats
 
-A console web application to keep track of 
+A web application using authentication- organize and keep track of treats and flavors for Pierre's Bakery. Add multiple of the single join relationship.
 
 #### Authored by Erika Debelis
 
