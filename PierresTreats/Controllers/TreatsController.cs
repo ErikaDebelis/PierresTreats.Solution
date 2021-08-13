@@ -35,8 +35,8 @@ namespace PierresTreats.Controllers
     [HttpPost]
     public async Task<ActionResult> Create(Treat treat, int FlavorId)
     {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
+      ApplicationUser userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       treat.User = currentUser;
       _db.Treats.Add(treat);
       _db.SaveChanges();
@@ -48,14 +48,33 @@ namespace PierresTreats.Controllers
       return RedirectToAction("Index");
     }
 
-     [AllowAnonymous]
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
-      var thisTreat = _db.Treats
+      Treat thisTreat = _db.Treats
         .Include(treat => treat.JoinEntities)
         .ThenInclude(join => join.Treat)
         .FirstOrDefault(treat => treat.TreatId == id);
       return View(thisTreat);
+    }
+
+    public ActionResult Edit(int id)
+    {
+      Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
+      return View(thisTreat);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Treat treat, int FlavorId)
+    {
+      if (FlavorId != 0)
+      {
+        _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = FlavorId, TreatId = treat.TreatId });
+      }
+      _db.Entry(treat).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }
