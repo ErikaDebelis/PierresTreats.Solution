@@ -17,7 +17,7 @@ using System.Security.Claims;
 namespace PierresTreats.Controllers
 {
   [Authorize]
-  public class RecipesController : Controller
+  public class FlavorsController : Controller
   {
     private readonly PierresTreatsContext _db;
     private readonly UserManager<ApplicationUser> _userManager;

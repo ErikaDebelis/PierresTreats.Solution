@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace PierresTreats.Controllers
 {
-  public class CategoriesController : Controller
+  public class TreatsController : Controller
   {
     private readonly PierresTreatsContext _db;  
   }
