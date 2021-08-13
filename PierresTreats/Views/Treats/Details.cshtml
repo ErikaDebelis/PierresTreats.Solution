@@ -1,3 +1,42 @@
 @{
   Layout = "_Layout";
 }
+
+@model PierresTreats.Models.Treat
+
+<h2>Treat Details</h2>
+<div>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      <h3>@Html.DisplayFor(model => model.Name)</h3>
+    </dt>
+
+    @if(@Model.JoinEntities.Count == 0)
+    {
+      <dt>
+        <i class="bi bi-exclamation-triangle"></i> This treat does not contain any Flavors <i class="bi bi-exclamation-triangle"></i>
+      </dt>
+    }
+    else
+    {
+      @foreach (var join in Model.JoinEntities)
+      {
+
+        <p>@Html.ActionLink($"{join.Flavor.Name}", "Details", new { id = join.Flavor.FlavorId })</p>
+        @* need to fix link functionality *@
+        @using (Html.BeginForm("DeleteFlavor", "Flavors"))
+        {
+          @Html.Hidden("joinId", @join.FlavorTreatId)
+          <button type="submit" value="Delete" class="btn btn-outline-danger btn-sm">Delete</button>
+        }
+      }
+    }
+  </dl>
+</div>
+<p>
+  @Html.ActionLink("Back to Treats", "Index") |
+  @Html.ActionLink("Add Flavor", "AddFlavor", new { id = Model.TreatId }) |
+  @Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId}) |
+  @Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })
+</p>
