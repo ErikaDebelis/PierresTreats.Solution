@@ -4,10 +4,10 @@
 
 @model PierresTreats.Models.Treat
 <h2>Delete a Treat</h2>
-<h3><i class="bi bi-exclamation-octagon-fill"></i> Are you sure you want to delete @Html.DisplayFor(model => model.Name)? <i class="bi bi-exclamation-octagon-fill"></i></h3>
+<h3><i class="bi bi-exclamation-octagon-fill"></i> Are you sure you want to delete @Html.DisplayFor(model => model.Description)? <i class="bi bi-exclamation-octagon-fill"></i></h3>
 <hr />
 <dd>
-  @Html.DisplayNameFor(model => model.Name) : @Html.DisplayFor(model => model.Name)
+  @Html.DisplayNameFor(model => model.Description) : @Html.DisplayFor(model => model.Description)
 </dd>
 
 @using (Html.BeginForm())

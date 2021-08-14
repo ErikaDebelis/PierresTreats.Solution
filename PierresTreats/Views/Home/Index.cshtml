@@ -1,3 +1,27 @@
 @{
   Layout = "_Layout";
 }
+
+<div class="jumbotron">
+  <h1>Pierre's Bakery</h1>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <h2>AMAZING Sweet and Savory Treats</h2>
+    <p>
+      Organize and coordinate your Treats and their corresoponding flavors!
+    </p>
+  </div>
+  <div class="col-md-3">
+    <h2>Flavors</h2>
+    <p>@Html.ActionLink("See all Flavors", "Index", "Flavors")</a></p>
+  </div>
+  <div class="col-md-3">
+    <h2>Treats</h2>
+    <p>@Html.ActionLink("See all Treats", "Index", "Treats")</p>
+  </div>
+  <div class="col-md-3">
+    <h2>Register/SignIn</h2>
+    <p>@Html.ActionLink("Create an account", "Index", "Account")</p>
+  </div>
+</div>

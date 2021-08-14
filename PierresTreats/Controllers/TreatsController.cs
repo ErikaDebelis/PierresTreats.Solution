@@ -1,20 +1,28 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using PierresTreats.Models;
-using System.Web;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using System.Security.Claims;
 using System.Linq;
+using System.Data;
+using System.Net;
+using System.Web;
+using System;
 
+using PierresTreats.Models;
 namespace PierresTreats.Controllers
 {
   [Authorize]
   public class TreatsController : Controller
   {
     private readonly PierresTreatsContext _db;
-    private readonly UserManager<User> _userManager;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public TreatsController(UserManager<User> userManager, PierresTreatsContext db)
+    public TreatsController(UserManager<ApplicationUser> userManager, PierresTreatsContext db)
     {
       _userManager = userManager;
       _db = db;
@@ -35,8 +43,8 @@ namespace PierresTreats.Controllers
     [HttpPost]
     public async Task<ActionResult> Create(Treat treat, int FlavorId)
     {
-      ApplicationUser userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
       treat.User = currentUser;
       _db.Treats.Add(treat);
       _db.SaveChanges();
@@ -85,7 +93,7 @@ namespace PierresTreats.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddFlavor(Flavor treat, int FlavorId)
+    public ActionResult AddFlavor(Treat treat, int FlavorId)
     {
       if (FlavorId != 0)
       {

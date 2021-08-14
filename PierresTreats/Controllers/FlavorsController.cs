@@ -1,28 +1,28 @@
-using System;
-using System.Data;
-using System.Net;
-using System.Web;
-using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
-using PierresTreats.Models;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using System.Linq;
+using System.Data;
+using System.Net;
+using System.Web;
+using System;
 
+using PierresTreats.Models;
 namespace PierresTreats.Controllers
 {
   [Authorize]
   public class FlavorsController : Controller
   {
     private readonly PierresTreatsContext _db;
-    private readonly UserManager<User> _userManager;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public FlavorsController(UserManager<User> userManager, PierresTreatsContext db)
+    public FlavorsController(UserManager<ApplicationUser> userManager, PierresTreatsContext db)
     {
       _userManager = userManager;
       _db = db;
@@ -42,12 +42,12 @@ namespace PierresTreats.Controllers
     [HttpPost]
     public async Task<ActionResult> Create(Flavor flavor, int TreatId)
     {
-      ApplicationUser userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
       flavor.User = currentUser;
       _db.Flavors.Add(flavor);
       _db.SaveChanges();
-      
+
       if (TreatId != 0)
       {
         _db.FlavorTreat.Add(new FlavorTreat() { TreatId = TreatId, FlavorId = flavor.FlavorId });
@@ -77,7 +77,7 @@ namespace PierresTreats.Controllers
     {
       if (TreatId != 0)
       {
-        _db.FlavorTreat.Add(new FlavorTreat() { TreatId = TreatId, TreatId = flavor.FlavorId });
+        _db.FlavorTreat.Add(new FlavorTreat() { TreatId = TreatId, FlavorId = flavor.FlavorId });
       }
       _db.Entry(flavor).State = EntityState.Modified;
       _db.SaveChanges();
