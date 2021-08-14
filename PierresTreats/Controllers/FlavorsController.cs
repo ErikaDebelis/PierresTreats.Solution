@@ -20,6 +20,17 @@ namespace PierresTreats.Controllers
   public class FlavorsController : Controller
   {
     private readonly PierresTreatsContext _db;
-    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly UserManager<User> _userManager;
+
+    public FlavorsController(UserManager<User> userManager, PierresTreatsContext db)
+    {
+      _userManager = userManager;
+      _db = db;
+    }
+    [AllowAnonymous]
+    public ActionResult Index()
+    {
+      return View(_db.Flavors.ToList());
+    }
   }
 }
