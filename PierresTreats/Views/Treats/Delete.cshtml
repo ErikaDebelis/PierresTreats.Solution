@@ -1,3 +1,25 @@
 @{
   Layout = "_Layout";
 }
+
+@model PierresTreats.Models.Treat
+<h2>Delete a Treat</h2>
+<h3><i class="bi bi-exclamation-octagon-fill"></i> Are you sure you want to delete @Html.DisplayFor(model => model.Name)? <i class="bi bi-exclamation-octagon-fill"></i></h3>
+<hr />
+<dd>
+  @Html.DisplayNameFor(model => model.Name) : @Html.DisplayFor(model => model.Name)
+</dd>
+
+@using (Html.BeginForm())
+{
+  <tr>
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <button type="submit" value="Delete" class="btn btn-outline-danger">Delete</button>
+      </div>
+    </div>
+  </tr>
+}
+<p>
+  @Html.ActionLink("Back to Treat list", "Index")
+</p
