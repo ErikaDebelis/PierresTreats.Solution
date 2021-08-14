@@ -1,3 +1,21 @@
 @{
   Layout = "_Layout";
 }
+
+@model PierresTreats.Models.Treat
+
+<h2>Add a Treat</h2>
+<br>
+@using (Html.BeginForm())
+{
+  <form class="form-control">
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
+      <button type="submit" value="Create" class="btn btn-outline-info">Add To Treats!</button>
+  </form>
+}
+<br>
+<p>
+  @Html.ActionLink("Show all Treats", "Index")
+</p>
+<h5>@Html.ActionLink("Main Menu", "Index", "Home")</h5>

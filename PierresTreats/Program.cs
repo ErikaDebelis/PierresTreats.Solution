@@ -7,7 +7,7 @@ namespace PierresTreats
   {
     public static void Main(string[] args)
     {
-      var host = new WebHostBuilder()
+      iWebHost host = new WebHostBuilder()
         .UseKestrel()
         .UseContentRoot(Directory.GetCurrentDirectory())
         .UseIISIntegration()

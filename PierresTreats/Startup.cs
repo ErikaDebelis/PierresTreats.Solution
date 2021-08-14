@@ -13,7 +13,7 @@ namespace PierresTreats
   {
     public Startup(IWebHostEnvironment env)
     {
-      var builder = new ConfigurationBuilder()
+      iConfigurationBuilder builder = new ConfigurationBuilder()
         .SetBasePath(env.ContentRootPath)
         .AddJsonFile("appsettings.json");
       Configuration = builder.Build();
