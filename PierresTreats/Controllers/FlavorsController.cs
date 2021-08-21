@@ -86,6 +86,8 @@ namespace PierresTreats.Controllers
 
     public ActionResult AddTreat(int id)
     {
+      List <Treat> TreatsList = _db.Treats.ToList();
+      ViewBag.TreatsList = TreatsList;
       Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
       ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
       return View(thisFlavor);
