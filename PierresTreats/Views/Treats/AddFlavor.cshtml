@@ -2,13 +2,13 @@
   Layout = "_Layout";
 }
 
-@model PierresTreats.Models.Flavor
+@model PierresTreats.Models.Treat
 
-<h2>Add a flavor to @Html.DisplayFor(model => model.Name)</h2>
+<h2>Add a flavor to @Html.DisplayFor(model => model.Description)</h2>
 
 @using (Html.BeginForm())
 {
-  @* @Html.HiddenFor(model => FlavorTreat.model.TreatId) *@
+  @Html.HiddenFor(model => model.TreatId)
 
   @Html.Label("Select Flavor")
   @Html.DropDownList("FlavorId")
