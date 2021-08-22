@@ -10,8 +10,11 @@
 {
   @Html.LabelFor(model => model.Description)
   @Html.TextBoxFor(model => model.Description)
-  <button type="submit" value="Create" class="btn btn-outline-info">Add To Treats!</button>
 
+  @Html.Label("Select Flavor")
+  @Html.DropDownList("FlavorId", "-select-")
+
+  <button type="submit" value="Create" class="btn btn-outline-info">Add To Treats!</button>
 }
 <br>
 <p>

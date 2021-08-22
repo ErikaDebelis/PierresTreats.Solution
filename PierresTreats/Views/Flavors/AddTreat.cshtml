@@ -24,7 +24,9 @@ else
   }
 }
 
-<h5>@Html.ActionLink("Add a new Treat", "Create", "Treats") | 
+<p>
+  @Html.ActionLink("Add a new Treat", "Create", "Treats") | 
   @Html.ActionLink("View All Treats", "Index", "Treats") | 
-  @Html.ActionLink("View All Flavors", "Index", "Flavors") | 
-  @Html.ActionLink("Main Menu", "Index", "Home")</h5>
+  @Html.ActionLink("View All Flavors", "Index", "Flavors")
+</p>
+<h5>@Html.ActionLink("Main Menu", "Index", "Home")</h5>

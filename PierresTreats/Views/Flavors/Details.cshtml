@@ -27,7 +27,10 @@ else
   </ul>
 }
 
-<p>@Html.ActionLink("Add a Treat", "AddTreat", new { id = Model.FlavorId })</p>
-<p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Edit Flavor", "Edit", new { id = Model.FlavorId })</p>
-<p>@Html.ActionLink("Delete Flavor", "Delete", new { id = Model.FlavorId })</p>
+<p>
+  @Html.ActionLink("Add a Treat", "AddTreat", new { id = Model.FlavorId }) | 
+  @Html.ActionLink("Back to Flavors list", "Index") | 
+  @Html.ActionLink("Edit Flavor", "Edit", new { id = Model.FlavorId }) | 
+  @Html.ActionLink("Delete Flavor", "Delete", new { id = Model.FlavorId })
+</p>
+<h5>@Html.ActionLink("Main Menu", "Index", "Home")</h5>
