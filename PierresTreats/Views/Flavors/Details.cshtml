@@ -13,15 +13,15 @@
 }
 else
 {
-  <h4>Treats @Html.DisplayFor(model => model.Name)belongs to:</h4>
+  <h4>Treats that have @Html.DisplayFor(model => model.Name) as a Flavor:</h4>
   <ul>
   @foreach(var join in Model.JoinEntities)
   {
-    <li>@join.Treat.Description</li>
+    <li>@Html.ActionLink(join.Treat.Description, "Details", "Treats", new { id = join.Treat.TreatId })</li>
     @using (Html.BeginForm("DeleteTreat", "Flavors"))
     {
       @Html.Hidden("joinId", @join.FlavorTreatId)
-      <button type="submit" value="Delete" class="btn btn-outline-Danger btn-sm">Delete</button>
+      <button type="submit" value="Delete" class="btn btn-outline-danger btn-sm">Delete</button>
     }
   }
   </ul>
