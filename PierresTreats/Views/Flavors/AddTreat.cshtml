@@ -4,12 +4,11 @@
 
 @model PierresTreats.Models.Flavor
 
-<h2>Add a Treat</h2>
-
-<h4>Add a Treat to this flavor @Html.DisplayFor(model => model.Name)</h4>
+<h4>Add the flavor @Html.DisplayFor(model => model.Name) to a Treat!</h4>
+<br>
 @if (ViewBag.TreatsList.Count == 0) 
 {
-  <p>No Treats are on your list!</p>
+  <h3><i class="bi bi-exclamation-triangle"></i>No Treats are on your list!<i class="bi bi-exclamation-triangle"></i></h3>
 }
 else 
 {
@@ -23,7 +22,7 @@ else
   <button type="submit" value="Save" class="btn btn-outline-secondary">Add Treat</button>
   }
 }
-
+<br>
 <p>
   @Html.ActionLink("Add a new Treat", "Create", "Treats") | 
   @Html.ActionLink("View All Treats", "Index", "Treats") | 

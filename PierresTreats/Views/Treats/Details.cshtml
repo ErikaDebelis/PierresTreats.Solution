@@ -5,35 +5,29 @@
 @model PierresTreats.Models.Treat
 
 <h2>Treat Details</h2>
-<div>
-  <hr />
-  <dl class="dl-horizontal">
-    <dt>
-      <h3>@Html.DisplayFor(model => model.Description)</h3>
-    </dt>
+<hr />
+<h3>@Html.DisplayFor(model => model.Description)</h3>
 
-    @if(@Model.JoinEntities.Count == 0)
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p><i class="bi bi-exclamation-triangle"></i> This treat does not contain any Flavors <i class="bi bi-exclamation-triangle"></i></p>
+}
+else
+{
+  <h4>The flavors @Html.DisplayFor(model => model.Description) come in:</h4>
+  <ul>
+  @foreach (var join in Model.JoinEntities)
+  {
+    <li>@Html.ActionLink(join.Flavor.Name, "Details", "Flavors", new { id = join.Flavor.FlavorId })</li>
+    @using (Html.BeginForm("DeleteFlavor", "Treats"))
     {
-      <dt>
-        <i class="bi bi-exclamation-triangle"></i> This treat does not contain any Flavors <i class="bi bi-exclamation-triangle"></i>
-      </dt>
+      @Html.Hidden("joinId", @join.FlavorTreatId)
+      <button type="submit" value="Delete" class="btn btn-outline-danger btn-sm">Delete</button>
     }
-    else
-    {
-      @foreach (var join in Model.JoinEntities)
-      {
+  }
+  </ul>
+}
 
-        <p>@Html.ActionLink(join.Flavor.Name, "Details", "Flavors", new { id = join.Flavor.FlavorId })</p>
-
-        @using (Html.BeginForm("DeleteFlavor", "Flavors"))
-        {
-          @Html.Hidden("joinId", @join.FlavorTreatId)
-          <button type="submit" value="Delete" class="btn btn-outline-danger btn-sm">Delete</button>
-        }
-      }
-    }
-  </dl>
-</div>
 <p>
   @Html.ActionLink("Back to Treats", "Index") |
   @Html.ActionLink("Add Flavor", "AddFlavor", new { id = Model.TreatId }) |
