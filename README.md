@@ -14,6 +14,7 @@ A web application using authentication- organize and keep track of treats and fl
 * _LINQ_
 * _ASP .NET CORE MVC_
 * _Entity Framework Core_
+* _Identity_
 
 ## Setup/Installation Requirements
 
@@ -50,6 +51,7 @@ Be sure to remove the ``{YOUR_USERNAME_NAME}`` and ``{YOUR_PASSWORD}`` and fill 
     ``$ dotnet watch run``
 
 9. View the website by visiting localhost:5000/ in a new web browser( such as google chrome) tab!
+
 ## Bugs
 
 _no known bugs at this time_
@@ -58,7 +60,7 @@ _no known bugs at this time_
 
 _MIT_
 
-_Copyright (c) 2021 Erika Debelis_
+_Copyright :copyright: 2021 Erika Debelis_
 
 if any issues are discovered while navigating the site, please let me know! It will help me learn and grow!
 
